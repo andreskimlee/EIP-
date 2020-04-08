@@ -10,6 +10,9 @@
 # while row/col > 0
 
 
+import math
+
+
 def spiralArr(matrix):
     traversedArr = []
     counterX = 0
@@ -51,3 +54,86 @@ coord = [0, 0], [0, 1], [0, 2]
 
 
 spiralArr(arr1)
+
+
+def isValidSudoku(self, board):
+    return (self.is_row_valid(board) and
+            self.is_col_valid(board) and
+            self.is_square_valid(board))
+
+
+def is_row_valid(self, board):
+    for row in board:
+        if not self.is_unit_valid(row):
+            return False
+    return True
+
+
+def is_col_valid(self, board):
+    for col in zip(*board):
+        if not self.is_unit_valid(col):
+            return False
+    return True
+
+# used to calculate the sub grids to ensure theyre unique.
+
+
+def is_square_valid(self, board):
+    for i in (0, 3, 6):  # iterates each element 0 to 3 to 6
+        for j in (0, 3, 6):  # iterates each element 0 to 3 to 6
+            square = [board[x][y]
+                      for x in range(i, i + 3) for y in range(j, j + 3)]
+            # this is equal to the above,
+            # square = for x in range(i,i +3):
+            # for y in range(j,j+3):
+            # square = board[x][y]
+            #
+            if not self.is_unit_valid(square):
+                return False
+    return True
+
+
+def is_unit_valid(self, unit):
+    unit = [i for i in unit if i != '.']
+    return len(set(unit)) == len(unit)
+
+
+# [-14, 10, 2 , 108, 243 , 285 ,285, 285 ,401]
+# if given key 285 should return first found idx.
+# should return -1
+# method --> sorted arr, with a key
+
+# pivot = len(arr) / 2 floored
+
+
+def findKey(arr, target, side=[]):
+    pivotidx = math.floor(len(arr) / 2)
+    leftSide = side[0:pivot]
+    rightSide = side[pivot:len(arr)]
+
+    # while loop would iterate k times. (Depending on amount of duplicates)
+    if arr[pivot] == target:
+        i = 0
+        while arr[pivot] == arr[pivot + i]:
+            i += 1
+        return (pivot + i)
+
+    if arr[pivot] > target:
+        findKey(arr, target, leftSide)
+
+    if arr[pivot] < target:
+        findKey(arr, target, rightSide)
+
+
+def findKey(arr, target, leftSide=0, rightSide=-1):
+    pivotIdx = math.floor(len(arr[leftSide:rightSide]) / 2)
+
+    if arr[pivot] == target:
+
+    if arr[pivot] > target:
+        rightSide = pivot
+        findKey(arr, target, leftSide, rightSide)
+
+    if arr[pivot] < target:
+        leftSide = pivot
+        findKey(arr, target, leftSide, rightSide)
