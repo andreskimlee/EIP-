@@ -166,3 +166,25 @@ def isBST(root, upper=float('inf'), lower=float('-inf')):
 
 # headnode.
 
+    # 20
+#     /  \
+#    15   25
+#    / \
+#   10 16
+
+# [20,15,10,16,25] preorder
+# [10,15,16,20,25] in order
+
+
+def traverseTreeBST(preorder, inOrder=[]):  # preorder sequence
+    if not inOrder:
+        inOrder = sorted(sequence)
+
+    if len(inOrder) == 1:
+        return inOrder[0]
+
+    root = preorder[0]
+    rootIdx = inOrder.index(root)
+
+    root.left = traverseTreeBST(preorder[1:-1], inOrder[:rootIdx])
+    root.right = traverseTreeBST(inOrder[rootIdx:-1])

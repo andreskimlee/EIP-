@@ -27,3 +27,14 @@ arr = ['apple', 'banana', 'apple', 'apple', 'dog', 'cat',
 keys = {'banana', 'cat'}
 
 print(smallestSubArr(arr, keys))
+
+
+# Photo Day -1
+# Takes input two teams. Height of players in the teams, and checks to see if it is possible to place players to take a photo
+
+
+[5, 6, 7, 8, 9]
+[3, , 6, 5, 10]
+
+5, 6, 7, 8
+3, 5, 6, 10
