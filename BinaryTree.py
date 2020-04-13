@@ -188,3 +188,17 @@ def traverseTreeBST(preorder, inOrder=[]):  # preorder sequence
 
     root.left = traverseTreeBST(preorder[1:-1], inOrder[:rootIdx])
     root.right = traverseTreeBST(inOrder[rootIdx:-1])
+
+
+# Compute LCA within BST :
+
+def find_LCA_BST(node, input1, input2):
+
+    if root.val < input1 and root.val < input2:
+        find_LCA_BST(root.left, input1, input2)
+
+    elif root.val > input1 and root.val > input2:
+        find_LCA_BST(root.right, input1, input2)
+
+    elif root.val == input1 or root.val == input2:
+        return root
