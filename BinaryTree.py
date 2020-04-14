@@ -202,3 +202,4 @@ def find_LCA_BST(node, input1, input2):
 
     elif root.val == input1 or root.val == input2:
         return root
+
