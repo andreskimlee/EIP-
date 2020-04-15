@@ -26,3 +26,22 @@ def cloneGraph2(self, node):
                 # mark the node just as a neighbor.
                 dic[node].neighbors.append(dic[neighbor])
     return nodeCopy
+
+
+# Given a 2D array of black and white entries representing amaze with designated entrance and exit
+# points, find a path from the entrance to the exit, if one exists 1 represents a wall 0 represents open space.
+# ex input :
+# [[1,0,0,0,0,0,1,1,0,E] node(1) : [0, 0]
+#  [0,1,0,0,0,0,0,0,0,0]
+#  [1,1,0,0,1,1,0,0,1,1]
+#  [0,0,1,1,1,0,0,0,1,0]
+#  [0,1,1,0,0,0,0,0,0,0]
+#  [0,1,1,0,0,1,0,1,1,0]
+#  [0,0,0,0,1,0,0,0,0,0]
+#  [1,0,1,0,1,0,1,0,0,0]
+#  [1,0,1,1,0,0,0,1,1,1]
+#  [S,0,0,0,0,0,0,1,1,0]]
+
+def traverseGraph(maze):
+    for i in range(len(maze)):
+        for j in range((i, len(maze)):
