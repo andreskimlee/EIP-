@@ -44,4 +44,12 @@ def abbreviation(a, b):
 # My approach is iterate over B. IF letter in a or if it is lowercase, we know we can mark it as safe.
 
 
+[[True, 0, 0, 0, 0],
+ [False, True, 0, 0, 0],
+ [False, True, True, 0, 0],
+ [False, True, True, False, 0],
+ [False, False, False, True, False],
+ [False, False, False, False, True]]
+
 print(abbreviation('AbcDE', 'ABDE'))
+
