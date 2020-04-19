@@ -103,7 +103,34 @@ for ele in arr2:
 # print(clocks[0].weight)
 # print(clocks[0].value)
 
-print(knap_sack(clocks, 130))
+# print(knap_sack(clocks, 130))
 
 
 # Timne complexity / space = o(m*n)
+
+# Count the number of score combinations.
+
+# input = [2,3,7], 12 output should be 4
+
+def calcCombos(num_plays, total_score):
+    #num_plays = [2,3,7]
+    dp = [[0 for i in range(total_score + 1)] for i in range(len(num_plays))]
+
+    for i in range(len(num_plays)):
+        for j in range(total_score + 1):
+            play = num_plays[i]
+            if j == play:
+                dp[i][j] = 1
+            else:
+                dp[i][j] = dp[i-1][j] + dp[i][j - num_plays[i]]
+
+    return dp[-1][]
+
+# [[0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+# [0, 0, 1, 1, 1, 1, 2, 1, 2, 2, 2, 2, 3],
+# [0, 0, 1, 1, 1, 1, 2, 1, 2, 3, 3, 3, 4]]
+
+
+arr = [2, 3, 7]
+
+print(calcCombos(arr, 12))
