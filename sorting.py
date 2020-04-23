@@ -162,15 +162,11 @@ def studentAdjacent(arr):
 
     adef = []
     abc = Counter(list(map(fun, arr)))
-
     for key in abc:
         adef += ([key] * abc[key])
 
     return adef
 
-
-14: 2
-12: 1
 
 arr = [14, 12, 11, 13, 13, 14]
 obj = []
@@ -179,6 +175,7 @@ for ele in arr:
     obj.append(Student(ele))
 
 print(studentAdjacent(obj))
+
 
 # [14, 12, 11, 13, 13, 14] => [11, 12, 13, 13, 14, 14]
 

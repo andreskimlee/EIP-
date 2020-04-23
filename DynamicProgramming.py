@@ -113,7 +113,7 @@ for ele in arr2:
 # input = [2,3,7], 12 output should be 4
 
 def calcCombos(num_plays, total_score):
-    #num_plays = [2,3,7]
+    # num_plays = [2,3,7]
     dp = [[0 for i in range(total_score + 1)] for i in range(len(num_plays))]
 
     for i in range(len(num_plays)):
@@ -124,7 +124,7 @@ def calcCombos(num_plays, total_score):
             else:
                 dp[i][j] = dp[i-1][j] + dp[i][j - num_plays[i]]
 
-    return dp[-1][]
+    return dp[-1][-1]
 
 # [[0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
 # [0, 0, 1, 1, 1, 1, 2, 1, 2, 2, 2, 2, 3],
@@ -133,4 +133,34 @@ def calcCombos(num_plays, total_score):
 
 arr = [2, 3, 7]
 
-print(calcCombos(arr, 12))
+
+#  A message is a string of uppercase letters, and it is encoded first using this scheme. For example, 'AZB' -> '1262'
+
+# Decode variations
+
+# input:  S = '1262'
+# output: 3
+# explanation: There are 3 messages that encode to '1262': 'AZB', 'ABFB', and 'LFB'.
+
+# 1262
+#         /\
+# [1][262]  [12][62] at each decision, you either take the integer next to you or you continue without doing so.
+
+counter = 0
+
+
+def decodeVariations(S, memo = {}):
+  if len(S) == 0:
+    return 1 
+  if S in memo: return memo[S]
+
+  takeOne, takeTwo = 0,0
+  
+  if int(S[:2]) >= 10 and int(S[:2]) <= 26:
+    takeTwo = decodeVariations(S[2:], memo)
+  if int(S[:1]) >= 1 and int(S[:1]) <= 9:
+    takeOne = decodeVariations(S[1:], memo)
+  
+  memo[S] = takeOne + takeTwo
+  
+  return memo[S]  
