@@ -36,8 +36,7 @@ It also keeps track of the status of all servers so it knows not to send traffic
 
 A load balancer typically sits between the client and server. 
 
-Client 
- []      ========> Internet ====> Load Balancer ==> Server 
+ ![alt-text](https://www.educative.io/api/collection/5668639101419520/5649050225344512/page/5747976207073280/image/5696459148099584.png)
 
 However, it can be added into three places: 
  1. between user and server
@@ -45,8 +44,8 @@ However, it can be added into three places:
  3. Between internal platform layer and database 
 
 
-Client 
- []      load balancer ========> internet =======> web server ====> Load Balancer ==> Application server =======> loadbalancer ====> Database
+![alt-text](https://i.imgur.com/w4i1kxd.png)
+
 
  The main difference between Web server and application server is that web server is meant to serve static pages e.g. HTML and CSS, while Application Server is responsible for generating dynamic content by executing server side code.
 
