@@ -71,9 +71,10 @@ How it operates:
 
 # Caching 
 
+Load balancing allows you to scale horizontally. Caching on the other hand allows you to scale by better utilizing the resources you already have. 
 
+### Locality of reference principle: recently requested data is likely to be requested again. 
 
-
-
+Caching exists in almost every layer of computing. The easiest way to think about a cache is that it is like a short term memory where it has a limited amount of information but is much faster than accessing 
 
 
