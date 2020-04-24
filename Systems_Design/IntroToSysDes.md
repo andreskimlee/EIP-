@@ -61,5 +61,19 @@ How it operates:
         3. Least Bandwidth - directs traffic to a server with the least amount of traffic measured in mb
         4.Round Robin - Cycles through a list of servers and sends a new request to the next server. (Repeats if it reaches end of the list) Most useful for when the servers have same specifications and there are not many connections
         5. Weighted Round Robin - used for when the servers have different specifications. Larger servers are assigned a larger integer value. and servers with higher integers receive new connections before those with lower numbers.
-        IP Hash - 
+        6. IP Hash - hash of the IP address of the client is calculated to redirect the request to a server. (Benefit: Network Adapter Redundancy)
+
+## Redundant Load Balancer
+
+    If only a single load balancer exists then it is a huge area for a single failure to disrupt the system. Hence multiple load balancers can exist. A second load balancer monitors the health of the first and any andditional load balancers simply monitors the health of the other load balancers. (Redundancy seems to a good thing and a great fail safe in a distributed system)
+
+![alt-text](https://i.imgur.com/A3d5cuu.png)
+
+# Caching 
+
+
+
+
+
+
 
