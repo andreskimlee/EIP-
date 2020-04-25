@@ -75,6 +75,46 @@ Load balancing allows you to scale horizontally. Caching on the other hand allow
 
 ### Locality of reference principle: recently requested data is likely to be requested again. 
 
-Caching exists in almost every layer of computing. The easiest way to think about a cache is that it is like a short term memory where it has a limited amount of information but is much faster than accessing 
+Caching exists in almost every layer of computing. The easiest way to think about a cache is that it is like a short term memory where it has a limited amount of information but is much faster for accessing information (it contains most recently accessed data) Often found near the level closest to the front where they are implemented to return data quickly without taxing downstream levels. 
+
+### Application Server Cache 
+    
+    A cache that exists directly on the request layer node. Each time a request is made, before querying into back end you can imagine that it checks the cahche if it is already contained. If so it will prematurely return. 
+
+### Content Distribution Network
+
+    CDN are a type of cache when there is a website with a lot of static media. Request is made it will check the CDN if it contains the media, if not it will query to fetch the file then cache it locally, and serve it to the user.
+
+### Cache Invalidation
+
+    Cache stores most recently used however that data SHOULD become invalidated if there is an update to the database modifying that data. Otherwise you can potentially have inconsistent behaviour in your application 
+
+    To solve this issue, there are three different schemes
+
+    1. Write-through-cache : You write to both the cache and the database when applying a change. That way your cache is also consistent. Benefit: your cache will not get loss in case of power loss, etc. Downside is you are writing twice. (More latency) 
+
+    2. Write-around cache : Data is written directly to permanent storage, bypassing the cache. Disadvantage is a cache-miss (Where the data doesnt exist in the cache) and must be read from the slower backend
+
+    3. Write-back cache: only written to the cache and it is not queried into the database until some time has passed
+
+### Cache eviction policies
+
+    FIFO - (First in First Out) simply removes the first block accessed 
+    LIFO - (Last in First Out) removes the lost element
+    LRU - (Least recently used) - least used gets tossed.
+    MRU - (discards most recently) used items first
+    LFU - (least frequently used) - Counts how often an item is needed. Those that are used least often are discarded first.
+    RR - (random) - self explanatory 
+
+
+### Data Partitioning
+
+    Data partitioning is the process of breaking up big databases into many smaller parts. (Splitting up a db/table to multiple machines to improve manageability, performance, availability, and load balancing of an application). The justification for data partitioning is that, after a certain scale point, it is cheaper and more feasible to scale horizontally by adding more machines than to grow it vertically by adding beefier servers. 
+
+#### Partitioning Methods
+    
+
+
+
 
 

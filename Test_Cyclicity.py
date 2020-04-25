@@ -21,7 +21,6 @@
 # if [key] does not exist visited[key] = something
 
 
-
 def TestCyclicity(head):
     main_head = head
     visited = {}

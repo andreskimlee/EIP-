@@ -149,18 +149,19 @@ arr = [2, 3, 7]
 counter = 0
 
 
-def decodeVariations(S, memo = {}):
-  if len(S) == 0:
-    return 1 
-  if S in memo: return memo[S]
+def decodeVariations(S, memo={}):
+    if len(S) == 0:
+        return 1
+    if S in memo:
+        return memo[S]
 
-  takeOne, takeTwo = 0,0
-  
-  if int(S[:2]) >= 10 and int(S[:2]) <= 26:
-    takeTwo = decodeVariations(S[2:], memo)
-  if int(S[:1]) >= 1 and int(S[:1]) <= 9:
-    takeOne = decodeVariations(S[1:], memo)
-  
-  memo[S] = takeOne + takeTwo
-  
-  return memo[S]  
+    takeOne, takeTwo = 0, 0
+
+    if int(S[:2]) >= 10 and int(S[:2]) <= 26:
+        takeTwo = decodeVariations(S[2:], memo)
+    if int(S[:1]) >= 1 and int(S[:1]) <= 9:
+        takeOne = decodeVariations(S[1:], memo)
+
+    memo[S] = takeOne + takeTwo
+
+    return memo[S]
