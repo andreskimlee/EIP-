@@ -112,9 +112,94 @@ Caching exists in almost every layer of computing. The easiest way to think abou
     Data partitioning is the process of breaking up big databases into many smaller parts. (Splitting up a db/table to multiple machines to improve manageability, performance, availability, and load balancing of an application). The justification for data partitioning is that, after a certain scale point, it is cheaper and more feasible to scale horizontally by adding more machines than to grow it vertically by adding beefier servers. 
 
 #### Partitioning Methods
+
+    Horizontal Partitioning: different rows into different tables. For example zipcodes > 10000 are stored in one table. and less than stored in another table. This method is also reffered to as range based partitioning. The flaw in this method comes potentially if you do not choose a data range that is balanced. For example your table stores users that listen to hip hop and rap partitioned by age. Your cut off line is less than 30 and greater than 30. You end up with a unbalanced and inefficient server because the < 30 age group far outweighs the > 30 age group who listen to rap. 
+
+    Vertical Partitioning: Each db server houses its own information for a specific attribute of a schema. For example. A users schema with user info, posts, and photos. One db contains user Info, another a post and so on. The disadvantage is its not a highly scalable system. IF all of a sudden you experience massive growth, you would need to further implement more partitioning for a specific feature. across various servers. 
+
+    Directory Based partitioning: work around issues mentioned in the above schemes is to create a lookup service which knows your current partitioning scheme and abstracts it away from the DB access code. So, to find out where a particular data entity resides, we query the directory server that holds the mapping between each tuple key to its DB server.
+
+### Partitioning Critera 
+
+    a. Key or Hash based partitioning: Under this scheme, we apply a hash function to some key attributes of the entity we are storing; that yields the partition number. For example, if we have 100 DB servers and our ID is a numeric value that gets incremented by one each time a new record is inserted. In this example, the hash function could be ‘ID % 100’, which will give us the server number where we can store/read that record. This approach should ensure a uniform allocation of data among servers. The fundamental problem with this approach is that it effectively fixes the total number of DB servers, since adding new servers means changing the hash function which would require redistribution of data and downtime for the service. A workaround for this problem is to use Consistent Hashing.
+
+
+    b. List partitioning : each partition is assigned a value. You place into that partition if the value and key pair match.
+
+    c. Round-robin partition: Ensures uniform data distribution. 
+
+
+### Common Issues with Data partitioning
+
+     Most of these constraints are due to the fact that operations across multiple tables or multiple rows in the same table will no longer run on the same server.
+
+     a. Joins and Denormalization: Performing joins on a database which is running on one server is straightforward, but once a database is partitioned and spread across multiple machines it is often not feasible to perform joins that span database partitions. Such joins will not be performance efficient since data has to be compiled from multiple servers. A common workaround for this problem is to denormalize the database so that queries that previously required joins can be performed from a single table. Of course, the service now has to deal with all the perils of denormalization such as data inconsistency.
+
+     b. Referential integrity : Enforicng foreign keys on a partitioned database can be extremely difficult. 
+
+     c. Rebalancing: The data distribution is not uniform, e.g., there are a lot of places for a particular ZIP code that cannot fit into one database partition.There is a lot of load on a partition, e.g., there are too many requests being handled by the DB partition dedicated to user photos. In such cases, either we have to create more DB partitions or have to rebalance existing partitions, which means the partitioning scheme changed and all existing data moved to new locations. Doing this without incurring downtime is extremely difficult. 
+
+# Indexes 
+
+    An index is a data structure that can be perceived as a table of contents that points us to the location where actual data lives.
+    Benefits: Faster look up time. Potential con: It can decrease write performance.(If you are inserting a new item to a database that exists within an index, you not only have to update your database but also your index)
+
+    Case basis: To reiterate, adding indexes is about improving the performance of search queries. If the goal of the database is to provide a data store that is often written to and rarely read from, in that case, decreasing the performance of the more common operation, which is writing, is probably not worth the increase in performance we get from reading.
+
+# Proxies 
+
+    A proxy is an intermediate server between the client and the back end server. 
+        Client ---> server --> web --> back-end 
+
+    In essence a proxiy is a piece of software or hardware that acts as an intermediary for requests from clients seeking resources from other servers.
+
+    Another advantage of a proxy server is that its cache can serve a lot of requests. If multiple clients access a particular resource, the proxy server can cache it and serve it to all the clients without going to the remote server.
+
+        Types of proxies 
+        1. Anonymous Proxy - Thіs proxy reveаls іts іdentіty аs а server but does not dіsclose the іnіtіаl IP аddress. Though thіs proxy server cаn be dіscovered eаsіly іt cаn be benefіcіаl for some users аs іt hіdes their IP аddress.
+        2. Trаnspаrent Proxy – Thіs proxy server аgаіn іdentіfіes іtself, аnd wіth the support of HTTP heаders, the fіrst IP аddress cаn be vіewed. The mаіn benefіt of usіng thіs sort of server іs іts аbіlіty to cаche the websіtes.
+
+    Reverse proxy -- client downloads something and that information seems like it was made by the proxy server instead of a real server. (Thinking about megaupload, etc that hosts pirated content and when you download it you are downloading it from proxy servers maybe?)
+
+# Redundancy and Replication
+
+    Redundancy is the act of duplicating critical components or functions of a system. with the intention of increasing reliability. (Usually you will have duplicate servers for files etc): 
+
+    A rule of thumb. At any point there is ever a single point of failure you want to have redundancy introduced to mitigate that potential point. 
+
+
+# SQL VS NoSQL
+    Key Note: many companies use both relational and non-relational databases because there are case to case uses.
+
+    When should we use SQL vs noSQL?
+
+    When to use SQL :
+        
+        1. When ACID compliance is important, (When you need to protect the integrity of your database)    
+        2. Your data is structured and unchanging (recall schemas are generally fixed in order to make any change to the schema you have to drop the whole database)
+
+    When to use NoSQL: 
+
+        1. Storing large volumes of data with little to no structure. A NoSQL database sets no limits on the types of data we can store together and allows us to add new types as the need changes. 
+
+        2. Making the most of cloud computing and storage. Cloud-based storage is an excellent cost-saving solution but requires data to be easily spread across multiple servers to scale up.
+
+        3. Rapid development! You dont have to drop your whole database every time you need to make a change to your schema
+
+
+# Cap Theorem 
+
+    CAP theorem states that it is impossible for a distributed software system to simultaneously provide more than two out of three of the following guarantees (CAP): Consistency, Availability, and Partition tolerance. When we design a distributed system, trading off among CAP is almost the first thing we want to consider. CAP theorem says while designing a distributed system we can pick only two of the following three options: 
+
+    Consistency: All nodes see the same data at the same time. Consistency is achieved by updating several nodes before allowing further reads.
+
+    Availability: Every request gets a response on success/failure. Availability is achieved by replicating the data across different servers.
+
+    Partition tolerance: The system continues to work despite message loss or partial failure. A system that is partition-tolerant can sustain any amount of network failure that doesn’t result in a failure of the entire network. Data is sufficiently replicated across combinations of nodes and networks to keep the system up through intermittent outages.  
+
+
+# System Design Step By Step Guide.
+
+    1. Step 1: Clarify requirements. By clarifying early on and clearing up any ambiguity, you save the risk of not answering the question 
+
     
-
-
-
-
-
