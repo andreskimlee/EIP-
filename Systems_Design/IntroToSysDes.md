@@ -200,6 +200,50 @@ Caching exists in almost every layer of computing. The easiest way to think abou
 
 # System Design Step By Step Guide.
 
-    1. Step 1: Clarify requirements. By clarifying early on and clearing up any ambiguity, you save the risk of not answering the question 
+### 1. Step 1: Clarify requirements. By clarifying early on and clearing up any ambiguity, you save the risk of not answering the question 
+    incorrectly or having to make major adjustments to fit the requirement. 
+        
+        Some Example questions: Do I have to implement xyz features. What pages can we predict to have. 
 
-    
+### 2. Step 2: Estimate the scale of the system.
+               * Approximately how many tweets in our twitter, number of users, etc
+               * How Much Storage Will We Need? 
+               * What network bandwidth usage are we expecting? This will be crucial in deciding how we will manage traffic and balance load between servers.
+
+### 3. System Interface definition 
+        Define what APIs are going to be needed for the system. Example of what that looks like: 
+            postTweet(user_id, tweet_data, tweet_location, user_location, timestamp, …)  
+        
+### 4. Define the data model 
+        Define your schema 
+            User: UserID, Name, Email, DoB, CreationData, LastLogin, etc.
+            Tweet: TweetID, Content, TweetLocation, NumberOfLikes, TimeStamp, etc.
+            UserFollowow: UserdID1, UserID2
+            FavoriteTweets: UserID, TweetID, TimeStamp
+        
+### 5. High Level design
+        Draw 5 or 6 blocks to represent core elements in your system. (Implement all components that will be needed to solve all requirements before digging into the finer details)
+
+        For Twitter you would need multiple application servers to serve all read/write requests. and have a load balancer to direct traffic to servers. 
+
+        Back-end you'd need a highly efficient database.
+
+        You would also need a distributed file storage system. for photos and videos
+
+![alt-text](https://www.educative.io/api/collection/5668639101419520/5649050225344512/page/5684049913839616/image/5127881690710016.png)
+
+### Step 6 Detailed Design 
+
+        Dig deeper into two or three major components; interviewer’s feedback should always guide us to what parts of the system need further discussion. 
+
+### Step 7: Identifying and resolving bottlenecks   
+
+    Bottle necks are areas in our distributed system that can potentially have a major negative impact on our total output.
+
+    Questions to answer:
+        1. Is there any single point of failure in our system? What are we doing to mitigate it?
+        2. Do we have enough replicas of the data so that if we lose a few servers, we can still serve our users?
+        3. Similarly, do we have enough copies of different services running such that a few failures will not cause total system shutdown?
+        4. How are we monitoring the performance of our service? Do we get alerts whenever critical components fail or their performance degrades?
+
+
