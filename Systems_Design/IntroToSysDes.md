@@ -246,4 +246,18 @@ Caching exists in almost every layer of computing. The easiest way to think abou
         3. Similarly, do we have enough copies of different services running such that a few failures will not cause total system shutdown?
         4. How are we monitoring the performance of our service? Do we get alerts whenever critical components fail or their performance degrades?
 
+ topics to review : Cap Theorem , NoSQL vs Sql, 
 
+
+# Sys Design Extra 
+
+    Questions to Think About For Sys Design Starting  
+
+    1. Is this program read heavy or write heavy
+    2. 
+
+
+    Questions to ask on schema
+
+    1. constraints on length or size of an attribute?
+    2. 
