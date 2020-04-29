@@ -124,9 +124,49 @@ Ctrl + Option + T = will open up your terminal
     crontab -e - will open a crontab file which has columns of month date time command, etc and it will run on schedule of the command.
     Use cases: you can make backup of files. etc 
     sudo crontab -e (root user crontab) 
-    
+
 
 
 Linux Vocab
 
     Kernal : The kernal essentially has one job: to translate between the software and the hardware. 
+
+
+
+# General Knowledge: 
+    ● How systems boot and load Linux
+        1. The BIOS which is the software that checks to ensure your hardware is functioning and if it is will initialize it. 
+        2. Next the bootloader is run in three steps. (the steps include a way to load your linux kernal)
+        3. Kernal is loaded and systemd is loaded
+        4. Startup follows the boot process and brings the linux computer to an operable state. 
+        5. systemd is the mother of all processes and it is responsible for bringing the Linux host up to a state in which productive work can be done. Some of its functions, which are far more extensive than the old init program, are to manage many aspects of a running Linux host, including mounting filesystems, and starting and managing system services required to have a productive Linux host. Any of systemd's tasks that are not related to the startup sequence are outside the scope of this article.
+
+    ● The shell, and how it interacts with the underlying operating system
+        1. Essentiall the terminal (Look above for more indepth CLI commands) 
+        2. 
+
+
+    ● UNIX file systems and storage
+        filess are stored in the directory tree. (Tree like structure). Interesting because the system uses recursion to traverse the nodes of the tree when doing a search.
+
+    ● Process management and state
+        recall you can run top to find a bunch of processes and locate command line name for those process or process ID's 
+
+    ● The Linux virtual memory model
+        Behaves sort of like a cache and helps with memory management.
+
+        Linux supports virtual memory, that is, using a disk as an extension of RAM so that the effective size of usable memory grows correspondingly. The kernel will write the contents of a currently unused block of memory to the hard disk so that the memory can be used for another purpose. When the original contents are needed again, they are read back into memory. This is all made completely transparent to the user; programs running under Linux only see the larger amount of memory available and don't notice that parts of them reside on the disk from time to time. Of course, reading and writing the hard disk is slower (on the order of a thousand times slower) than using real memory, so the programs don't run as fast. The part of the hard disk that is used as virtual memory is called the swap space.
+
+    ● Techniques for resource control
+
+
+
+    ● Common system troubleshooting tools and techniques
+
+
+# Tools 
+
+## tools for system performance
+
+
+## tools for resource utilization
