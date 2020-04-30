@@ -143,7 +143,6 @@ Linux Vocab
 
     ● The shell, and how it interacts with the underlying operating system
         1. Essentiall the terminal (Look above for more indepth CLI commands) 
-        2. 
 
 
     ● UNIX file systems and storage
@@ -163,11 +162,49 @@ Linux Vocab
 
     ● Common system troubleshooting tools and techniques
 
+What happens when a linux system boots?
 
-# Tools 
+1. BIOS which controls the computers hardware is run on the first step. It tests the hardware of the computer by doing a system integrity check. 
 
-## tools for system performance
+fatal error -> hardware issue
+non - fatal -> software issue 
+
+the BIOS searches, loads and executes the bootloader program. Once found it handshakes over control to the bootloader
+
+2. Boot Loader Pt1
+
+the MBR is located in the first sector of the bootable disk typically at (dev/sda) MBR is 512 bytes in size. Master boot record identifies how and where an operating system is located so that it can be boot (loaded) into the computer's main storage or random access memory.
+
+3. Boot Loader Pt2  (Grub)
+Grand unified Bootloader
+
+Grub is responsible for loading the Operating system for your computer. In our case it will load linux by invoking the operating system's kernal from disk or network. 
+The GRUB starts the kernel and tells the memory address of this image file. The kernel then mount this image file as a starter memory based root file system.
+
+4. Kernal. 
+
+kernal is the software that operates your machine. 
+
+The kernel then starts to detect the system’s hardware. The root file system on disk takes over from the one in memory. The boot process then starts INIT (SYSTEMD) and the software daemons according to the Sys Admin’s settings. This can be done at next stages.
+
+5. INIT
+
+When init starts, it become the first or parent process on your Linux machine/server.
+
+First thing init does is it reads the initialization file located in /etc/inittab (Checks to see which initial programs are loaded at startup)
+
+init starts daemon (all background processes) which is responsible for the graphical user interface 
+
+finally GUI shows the login. 
 
 
-## tools for resource utilization
+Why linux preferred over other operating systems especially for servers?
+
+1. no licensing fee, its free
+2. because it is open source, bugs can be fixed far faster 
+3. less likely to crash. 
+4. Linux uses fewer resources 
+
+swap partition is a partition created by your choice that will be used when your ram is overflowed. 
+
 

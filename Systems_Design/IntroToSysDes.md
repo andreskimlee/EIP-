@@ -254,10 +254,43 @@ Caching exists in almost every layer of computing. The easiest way to think abou
     Questions to Think About For Sys Design Starting  
 
     1. Is this program read heavy or write heavy
-    2. 
+    2. Given requirements use CAP theorem. 
 
 
     Questions to ask on schema
 
     1. constraints on length or size of an attribute?
     2. 
+
+## Designing DropBox Key Points    
+
+1 . Microservicing of Servers: 
+    Servers if you expect high amounts of volume can abstract or do seperations of concerns where each server has a role. 
+    Block Server : the role of getting the file uploading it to S3 and returnibng the src url.
+    Metadata server: all metadata (filename, size, date created, etc ) posts to server.
+    Synchronization server: beghaves like  a service where it compares information on the metadata server to the clients local storage if it is it will do a rewrite to keep data updated.
+
+    Storage breaks down into two types 
+
+    Metadata - stores a files name, etc all metadata
+
+    cloud storage - stores the actual file 
+
+2.  Chunks : files can be split into chunks where only the modified chunk will update the file. For example, lets say as a user you modify a file. Instead of replacing the whole file when you update it, it should only modify the chunk of the file that has been changed. 
+
+3. Try to abstract as much as possible in terms of different tasks (For example, in the case of dropBox we need four different services from the clients end) 
+
+    a. Internal metadata database - will keep track of all the files and their versions
+    b. Chunker - splits files into chunks only updates modified chunks
+    c. Watcher - will monitor local storage for changes for when user update create delete etc. 
+    d. Indexer - update the internal metadata with information about the chunks modified files. 
+
+4. Message queuing service 
+
+    A middleware that exists to keep order. Ex: have 5 people sharing/editing a file. You do not want conflicts with edits so you should keep a queue system to keep order in place. 
+
+
+
+
+
+
