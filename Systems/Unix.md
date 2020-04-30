@@ -208,3 +208,32 @@ Why linux preferred over other operating systems especially for servers?
 swap partition is a partition created by your choice that will be used when your ram is overflowed. 
 
 
+What is Bash? What happens when you run ls -l *foo?
+
+Bash is a programming language for your terminal. The terminal exists as a software layer to speak with the kernal
+
+the terminal listens for inputs and once a command is entered bash starts whats called fork-execute-wait-cycle
+
+Fork-execute-wait-cycle: 
+
+    Essentially bash forks the command (creates a child prcoess) that child process then executes the ls command and then waits for the child process to finish.
+
+Terminal is a bash program
+Bash program is listening for inputs
+Every time I press a keyboard button, hardware interrupt to cpu
+CPU switches to kernel mode, reads keyboard input, serves process
+bash displays keyboard input
+when enter is pressed, bash starts something called as Fork-Execute-Wait Cycle
+bash forks and creates replica
+I talked about switching into kernel mode too.
+replica runs exec to switch into ls
+ls takes command line arguments
+the *foo part gets sent to a shell globbing program (essentially reads the *foo part) 
+ls runs and prints and exits
+returns and bash which was waiting now continues
+
+
+
+when you run ls -l *foo bash picks up the comman ls which is listing all directories in the current directory. 
+
+then it picks up the -l which is long form. Next the *foo which is a 
