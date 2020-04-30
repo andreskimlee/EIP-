@@ -233,6 +233,31 @@ ls runs and prints and exits
 returns and bash which was waiting now continues
 
 
+What is fork-execute-Wait cycle
+
+    FORK 
+
+        Pattern where fork creates a replica to the point pc 
+        The parent-child processes are differentied by the return value of the fork.
+        returns zero PID for a child and non zero for parent.
+
+        Can fork fail? 
+
+        yes PID's are limited if a parent process keeps creating zombie children process, PID's will run out. 
+    
+
+    EXEC 
+
+        Replica or child process runs the command given from the commmand line. 
+    
+    WAIT 
+
+        waits for child process to finish
+
+
+Zombie Processes 
+
+    Child processes that have finished executing but their parents are still waiting for their return. One way to fix this is to wait on the child by using a waitpid command 
 
 when you run ls -l *foo bash picks up the comman ls which is listing all directories in the current directory. 
 
