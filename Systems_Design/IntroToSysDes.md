@@ -291,3 +291,42 @@ Caching exists in almost every layer of computing. The easiest way to think abou
 
 
 
+## Designing Youtube
+ 
+1. Schema
+
+    Video : 
+        id
+        title,
+        description
+        uploader => userId
+        likes
+        dislikes
+        views
+
+    Comments: 
+        belongs to video id => videoID
+        commentId
+        UserId
+        actual comment
+
+    User
+        name email etc
+
+2. High level overview. For videos specifically you want to use an encoder. Now what an encoder does is essentially takes whatever the user uploaded and encodes the video so that it becomes accessible in the browser. Common formats include mp4 WMV, etc. As with sites that have media files, you can use a object storage such as S3 and also in the database you can have a metadata database along with the user database. Also the use of a processing queue will be effective here, (order matters first come first start upload you dont want a user who started later having a faster upload etc) (Remember a processing queue is really essential for when order matters)
+
+
+Metadata sharding -> sharding the metadata database you can shard by videoID
+
+you can use a cache for more popular videos.
+
+---- Questions you should ask in System design Interview --- 
+
+1. what are the functional requirements  + non functional requirements 
+
+
+3. Content Delivery Network (used for sites servign large amounts of static media) - CDN will store popular videos in the case of youtube for that specific region or geography and serve that content if it in that content. 
+
+
+Availability is achieved by replicating the data across different servers.
+Consistency is achieved by updating several nodes before allowing further reads.

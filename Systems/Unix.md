@@ -354,30 +354,106 @@ printenv (A bunch of variables  will be printed such as root path, hostname, etc
 8. I get "command not found" when I run ifconfig -a. What can be wrong?
 
 
+
 What happens if I type TAB-TAB?
+
+list all possible commands that start with the typed character (kind of like an autocomplete)
+
 What command will show the available disk space on the Unix/Linux system?
+
+df
+
 What commands do you know that can be used to check DNS records?
+
+nslookup (DNS is like a phonebook of the internet) DNS translates domain name to IP address recall you can make a domain name to an IP 
+
 What Unix/Linux commands will alter a files ownership, files permissions?
+
+chmod  
+
 What does chmod +x FILENAME do?
+
+chmod 646 filename the 6 represents read and write 4 represents just read. Each digit represents from left to right, Root user permissions, group permision, world permission
+
 What does the permission 0750 on a file mean?
+
+7 represents read write execute, 5 represents read and execute 
+
 What does the permission 0750 on a directory mean?
+
+same as above
+
 How to add a new system user without login permissions?
+
+modify etc/passwd with vipw (vipw can edit password files)
+
 How to add/remove a group from a user?
+
+gpasswd -d user group  
+
 What is a bash alias?
+
+an abbreviation to avoid typing long command sequence (example -ifname can just be i when doing a find command)
+
 How do you set the mail address of the root/a user?
+
+nano /root/.forward then insert edit or remove email in that file
+
 What does CTRL-c do?
+
+abort process  (interrupt)
+
 What does CTRL-d do?
+
+ tells the terminal that it should register a EOF on standard input, which bash interprets as a desire to exit.
+
 What does CTRL-z do?
+
+suspends the program 
+
 What is in /etc/services?
+
+stores port numbers 
+
 How to redirect STDOUT and STDERR in bash? (> /dev/null 2>&1)
+
+execute the output then print to > new.txt
+
 What is the difference between UNIX and Linux.
+
+UNIX is the original (made by AT&T) closed source linux is a derivation of UNIX and is open source made by linus
+
 What is the difference between Telnet and SSH?
+
+Telnet is not a secure communications protocol
+
 Explain the three load averages and what do they indicate. What command can be used to view the load averages?
+
+Linux load averages are "system load averages" that show the running thread (task) demand on the system as an average number of running plus waiting threads. This measures demand, which can be greater than what the system is currently processing. Most tools show three averages, for 1, 5, and 15 minutes:
+
+
 Can you name a lower-case letter that is not a valid option for GNU ls?
-What is a Linux kernel module?
+
+(not sure)
+
+What is a Linux kernel module? 
+
+the software that allows us to operate on the hardware essentially 
+
 Walk me through the steps in booting into single user mode to troubleshoot a problem.
+
+attach the letter s to a command line whereas sudo is for admin user. 
+
 Walk me through the steps you'd take to troubleshoot a 404 error on a web application you administer.
+
+404 server not found -> This question is quite hard to solve given the lack of context. (depends on distribution, etc)
+
+
 What is ICMP protocol? Why do you need to use?
+
+The Internet Control Message Protocol is an internet layer protocol used by network devices to diagnose network communication issues. ICMP is mainly used to determine whether or not data is reaching its intended destination in a timely manner. Commonly, the ICMP protocol is used on network devices, such as routers.
+
+
 
     
 
