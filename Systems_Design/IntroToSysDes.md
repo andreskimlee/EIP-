@@ -330,3 +330,19 @@ you can use a cache for more popular videos.
 
 Availability is achieved by replicating the data across different servers.
 Consistency is achieved by updating several nodes before allowing further reads.
+
+
+reliability = the probability of a system going down will continue to operate even with a part that does not work. 
+
+Master-slave relationship for the database, to ensure high reliability. availability can be accomplished by creating duplicate 
+
+
+Availability --> Achieved through redundancy
+
+Recall - Consistent hashing allows us to distribute data across a cluster in such a way that will minimize reorganization 
+
+THEY WILL INTENTIONALLY BE AMBIGUOUS ASK AS MANY QUESTIONS AS POSSIBLE!
+
+
+
+

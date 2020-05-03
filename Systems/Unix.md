@@ -19,7 +19,7 @@ Ctrl + Option + T = will open up your terminal
             1. the owner (First column) can read and write the file
             2. groups can only read.(second column)
             3. public can only read. (third column)
-
+    uname -r returns system info like hardware version, etc
 
     ls -r reverse order
     ls -s (sort by file size)
@@ -186,7 +186,6 @@ The GRUB starts the kernel and tells the memory address of this image file. The 
 kernal is the software that operates your machine. 
 
 The kernel then starts to detect the system’s hardware. The root file system on disk takes over from the one in memory. The boot process then starts INIT (SYSTEMD) and the software daemons according to the Sys Admin’s settings. This can be done at next stages.
-
 5. INIT
 
 When init starts, it become the first or parent process on your Linux machine/server.
