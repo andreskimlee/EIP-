@@ -343,6 +343,10 @@ Recall - Consistent hashing allows us to distribute data across a cluster in suc
 
 THEY WILL INTENTIONALLY BE AMBIGUOUS ASK AS MANY QUESTIONS AS POSSIBLE!
 
+when you are consistent and available you can never be partition tolerant, means than when the network is partitioned - the system will break.
+In case the network is partitioned, you can choose to stop serve requests, to keep up the consistency but than you'll loose the availability, or you can choose to serve the clients with outdated results but you keep the availability.
 
 
 
+
+# Designing faceBooks NewsFeed

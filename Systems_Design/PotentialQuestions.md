@@ -1,25 +1,10 @@
 
-    Design and implement Minesweeper
-
-    how do you determine if a drive is full?
-
-    What signal is sent to a parent process when the child process terminates
-
     (top, vmstat, dstat, sys trace, etc.). Know these tools 
 
-    How would you troubleshoot a system in which you are not  able to start an application on the server?
-
-        USE methodolgy. Linux commands with proper internal knowledge about its columns and how it works.
-        Commands : top, uptime, vmstat, pidstat, mpstat, iostat, sar, free, du, df, traceroute, netstat, ps.
 
 
     How do you see which disks are currently mounted?
 
-    The Bulb Switcher - leetcode
-
-     uname -r do?
-
-     $ sign means normnal user.
 
      Know the kernel in incredible depth
 

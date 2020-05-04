@@ -364,7 +364,7 @@ df
 
 What commands do you know that can be used to check DNS records?
 
-nslookup (DNS is like a phonebook of the internet) DNS translates domain name to IP address recall you can make a domain name to an IP 
+ (DNS is like a phonebook of the internet) DNS translates domain name to IP address recall you can make a domain name to an IP 
 
 What Unix/Linux commands will alter a files ownership, files permissions?
 
