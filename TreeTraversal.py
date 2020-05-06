@@ -9,3 +9,14 @@ def printInorder(root):
 
         # now recur on right child
         printInorder(root.right)
+
+
+[0, 0], [0, 1], [0, 2]
+
+ships = 3
+
+[0, x, 0, 0, 0, 0, x]
+[0, x, 0, 0, 0, 0, x]
+[0, x, 0, 0, 0, 0, x]
+[0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 0, 0, 0]
