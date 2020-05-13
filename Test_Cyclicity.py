@@ -37,7 +37,6 @@ def TestCyclicity(head):
     if isCyclicity:
         return main_head
     else:
-        return null
+        return None
 
     # Their approach two seperate numerators and you iterates faster one that is slower
-

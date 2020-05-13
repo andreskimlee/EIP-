@@ -24,7 +24,7 @@ def printLevelOrder(root):
 
     while(len(queue) > 0):
         # Print front of queue and remove it from queue
-        print queue[0].data,
+        print(queue[0].data)
         node = queue.pop(0)
 
         # Enqueue left child
