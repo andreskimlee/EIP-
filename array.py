@@ -41,20 +41,14 @@ def findIntersects(input1, input2):
 # n is the max number.
 
 
-
 def findNCollatz(kth):
     masterDict = set(HelperCollatz(kth))
-    
+
     for i in range(1, kth):
         if i % 2 == 0:
             continue
         else:
             if i in masterDict:
-                
-
-
-
-
 
 
 
@@ -70,7 +64,6 @@ def HelperCollatz(num):
     return collatz_conj
 
 
-
 print(collatz(1))
 print(collatz(2))
 print(collatz(3))
@@ -82,3 +75,13 @@ print(collatz(8))
 print(collatz(9))
 print(collatz(10))
 # 50 --> 25 -->
+
+
+# find the maximum subbarray for a given arrray.
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        dp = [0]*len(nums)
+        dp[0] = nums[0]
+        for i in range(1, len(nums)):
+            dp[i] = max(nums[i], nums[i] + dp[i-1])
+        return max(dp)
