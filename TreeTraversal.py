@@ -34,3 +34,17 @@ def printLevelOrder(root):
         # Enqueue right child
         if node.right is not None:
             queue.append(node.right)
+
+
+# for traversing in preorder for a n-ary tree (tree with multiple children potentially):
+
+class Solution:
+    def preorder(self, root: 'Node') -> List[int]:
+        stack, r = [root], []
+        while stack:
+            node = stack.pop()
+            if node != None:
+                r.append(node.val)  # preorder
+                for i in range(len(node.children)-1, -1, -1):  # traversing from the left
+                    stack.append(node.children[i])
+        return r
