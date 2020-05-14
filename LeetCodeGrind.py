@@ -4,6 +4,7 @@
 # but you could also solve this using two pointers with a predetermined length of an array that starts inwards and expands outwards or vise versa
 
 
+from collections import deque
 from collections import OrderedDict
 
 
@@ -114,3 +115,25 @@ class Solution:
             res.append(temp)
 
         return res
+
+
+# 590. N-ary Tree Postorder Traversal
+
+
+class Solution:
+    def postorder(self, root: 'Node') -> List[int]:
+        if not root:
+            return []
+        stack = deque()
+        stack.append(root)
+        res = deque()
+        while stack:
+
+            currNode = stack.popleft()
+            res.appendleft(currNode.val)
+            if currNode.children:
+                a = len(currNode.children)
+                for i in range(0, a):
+                    stack.appendleft(currNode.children[i])
+
+        return list(res)
