@@ -137,3 +137,27 @@ class Solution:
                     stack.appendleft(currNode.children[i])
 
         return list(res)
+
+# 1441. Build an Array With Stack Operations
+
+
+class Solution:
+    def buildArray(self, target: List[int], n: int) -> List[str]:
+
+        numsList = (list(range(1, n + 1)))
+
+        res = []
+
+        i = 0
+        j = 0
+        while i < len(numsList) and j < len(target):
+
+            res.append("Push")
+
+            if numsList[i] == target[j]:
+                i += 1
+                j += 1
+            else:
+                res.append("Pop")
+                i += 1
+        return res
