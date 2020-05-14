@@ -90,3 +90,27 @@ class Solution:
             result += temp_str[::-1]
 
         return(result)
+
+# 832. Flipping an Image
+
+
+class Solution:
+    def flipAndInvertImage(self, A: List[List[int]]) -> List[List[int]]:
+        # brute force approach just reverse each element then invert it
+
+        # [1,1,0] # [1,0,0] you can create a empty array Then traverse backwards while inserting into your empty array.
+
+        res = []
+
+        for num in A:
+            temp = []
+            i = len(num) - 1
+            while i >= 0:
+                if num[i] == 0:
+                    temp.append(1)
+                else:
+                    temp.append(0)
+                i -= 1
+            res.append(temp)
+
+        return res
