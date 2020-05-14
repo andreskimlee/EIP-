@@ -161,3 +161,49 @@ class Solution:
                 res.append("Pop")
                 i += 1
         return res
+
+
+# 811. Subdomain Visit Count
+# approach make a dictionairy of all words traversing backwards from the element in the cpdomains. then you can just check
+# if the  key already exists in the dict then you add the current value to the value otherwise you set it equal to the amt which
+# is defined in the string
+
+
+class Solution:
+    def subdomainVisits(self, cpdomains: List[str]) -> List[str]:
+        # ["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"]
+
+        #          #google : 900
+        #             mail: 901
+        #             com : 951
+        #             yahoo : 50
+        #             intel : 1
+        #             wiki: 1
+        #             org: 1
+
+        domainDict = {}
+
+        dups = set()
+
+        for domain in cpdomains:
+            partsD = domain.split(" ")
+            amt = partsD[0]
+            allWords = partsD[1].split(".")
+            print(allWords)
+            for i in range(len(allWords) - 1, -1, -1):
+                wordToAdd = ".".join(allWords[i:])
+                print(wordToAdd)
+                if wordToAdd in domainDict:
+                    domainDict[wordToAdd] += int(amt)
+                else:
+                    domainDict[wordToAdd] = int(amt)
+
+        res = []
+        for key in domainDict:
+            val1 = domainDict[key]
+            val2 = key
+            resStr = ""
+            resStr += str(val1) + ' ' + val2
+            res.append(resStr)
+
+        return res
