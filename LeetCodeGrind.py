@@ -207,3 +207,25 @@ class Solution:
             res.append(resStr)
 
         return res
+    # 922. Sort Array By Parity II
+    class Solution:
+
+    def sortArrayByParityII(self, A: List[int]) -> List[int]:
+        # given half are odd and half are even, the greedy approach is to split it and just alternate between taking from each array until it is equal to the length of the original array.
+        res = []
+        mid = len(A) // 2
+
+        even = []
+        odd = []
+        # because we dont know if the array is sorted with half even or half odd.
+        for num in A:
+            if num % 2 == 0:
+                even.append(num)
+            else:
+                odd.append(num)
+
+        for i in range(len(even)):
+            res.append(even[i])
+            res.append(odd[i])
+
+        return res
