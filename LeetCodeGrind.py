@@ -229,3 +229,123 @@ class Solution:
             res.append(odd[i])
 
         return res
+
+
+# Maximum Depth of N-ary  Tree
+# Tried solving it via stack and it is extremely difficult without the help of additional libraries. Use recursion (in order to keep
+# track of max value)
+
+class Solution:
+    def maxDepth(self, root: 'Node') -> int:
+        if root is None:
+            return 0
+        if root.children:
+            # at this point this recursion call should return once it reaches the leaf nodes for all nodes.
+            # Every time you enter a recursive call it is plus one (one level down)
+            return max(map(self.maxDepth, root.children))+1
+        else:
+            return 1
+
+# Leetcode 1002
+
+
+class Solution:
+    def commonChars(self, A: List[str]) -> List[str]:
+        res = []
+
+        # we initialize our dictionairy to the first word
+        dic = Counter(A[0])
+
+        for i in range(1, len(A)):
+            word = A[i]
+            tempCounter = Counter(A[i])
+
+           # We iterate over each word and see if it already exists in our dictionary. If it does then we know we need to only update it if the number of letters is greater than whats in our current dic.
+
+            for key in dic:
+
+                # Decided not to use a pop or del due to issues iterating or changing the size of the dictionairy while iterating.
+                if key not in tempCounter:
+                    dic[key] = ""
+
+                elif dic[key] != "" and dic[key] > tempCounter[key]:
+                    dic[key] = tempCounter[key]
+
+        # At this point all our letters in our dictionairy should be minified to the appropriate levels where they exist in all the given words.
+
+        for key in dic:
+            if dic[key] != "":
+                res += ([key] * dic[key])
+
+        return res
+
+ # 542. 01 Matrix
+
+ # Graph Theory: If you have unweighted edges and you are trying to find the shortest path, USE BFS!!
+# Normally in a graph you are given a source node. In this case you are given a matrix. What can we do?
+
+
+# directional grid format :
+
+dr = [-1, 1, 0, 0]
+dy = [0, 0, 1, -1]
+
+# We do 4 in this example because the maxikmum number of neighbors in this case is 4:
+for i in range(4):
+    rr = r + dr[i]
+    cc = c + dy[i]
+
+    # our [rr, cc] is going to be all the neighbors of our original r,c coordinate.
+    # edge cases where you are at the border.
+    if rr < 0 and cc < 0:
+        continue
+    if rr >= R or cc >= C:
+        # R and C represent the max length of the row or column of the matrix.
+        continue
+
+# 893 not the most optimal solution. You just need to sort the even and odd indexes and join both and append it to a set.
+
+
+class Solution:
+    def numSpecialEquivGroups(self, A: List[str]) -> int:
+        # count how many unique anagrams there are
+
+        wordDict = {}
+
+        for word in A:
+            even = ''
+            odd = ''
+            for i in range(len(word)):
+                if i % 2 == 0:
+                    even += word[i]
+                else:
+                    odd += word[i]
+            odd = "".join(sorted(odd))
+            even = "".join(sorted(even))
+            dictKey = even + odd
+
+            if dictKey in wordDict:
+                wordDict[dictKey] += 1
+            else:
+                wordDict[dictKey] = 1
+
+        counter = 0
+        return len(wordDict.keys())
+
+# 1413. Minimum Value to Get Positive Step by Step Sum
+
+
+class Solution:
+    def minStartValue(self, nums: List[int]) -> int:
+        # Approach. Just find the largest min value from nums while iterating.
+        maxMin = float('inf')
+
+        currMin = 0
+        for num in nums:
+            currMin += num
+            maxMin = min(currMin, maxMin)
+
+        if maxMin < 0:
+            return abs(maxMin) + 1
+        else:
+            return 1
