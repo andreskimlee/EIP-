@@ -4,6 +4,7 @@
 # but you could also solve this using two pointers with a predetermined length of an array that starts inwards and expands outwards or vise versa
 
 
+import threading
 from collections import deque
 from collections import OrderedDict
 
@@ -349,3 +350,58 @@ class Solution:
             return abs(maxMin) + 1
         else:
             return 1
+
+
+# 1114 Cool trick utilizing threading. acquire essentially
+
+
+class Foo:
+    def __init__(self):
+        self.lock1 = threading.Lock()
+        self.lock1.acquire()
+
+        self.lock2 = threading.Lock()
+        self.lock2.acquire()
+
+    def first(self, printFirst: 'Callable[[], None]') -> None:
+        printFirst()
+        self.lock1.release()
+
+    def second(self, printSecond: 'Callable[[], None]') -> None:
+        self.lock1.acquire()
+        printSecond()
+
+        # let's release lock2, so third function can run
+        self.lock2.release()
+
+    def third(self, printThird: 'Callable[[], None]') -> None:
+        # wait for second funtion to finish
+        self.lock2.acquire()
+
+        printThird()
+
+# 797 All paths from source to target. When you are finding all possible paths (Backtracking with memoization)
+# in this particular case, you dont necessarily have to do the pop function you just pass it with a singular decision.
+
+
+class Solution(object):
+    def __init__(self):
+        self.memo = {}
+
+    def allPathsSourceTarget(self, graph):
+        """
+        :type graph: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        self.memo = {len(graph)-1: [[len(graph)-1]]}
+
+        def calc(N):
+            if N in self.memo:
+                return self.memo[N]
+            a = []
+            for n in graph[N]:
+                for path in calc(n):
+                    a.append([N]+path)
+            self.memo[N] = a
+            return a
+        return calc(0)
