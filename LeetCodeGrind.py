@@ -405,3 +405,56 @@ class Solution(object):
             self.memo[N] = a
             return a
         return calc(0)
+
+
+class Solution:
+    def findComplement(self, num: int) -> int:
+        # To Convert to bit first.
+        a = "{0:b}".format(num)
+        res = ""
+
+        for letter in a:
+            if letter == "1":
+                res += "0"
+            else:
+                res += "1"
+        # To convert a bit with a base of 2
+        return int(res, 2)
+
+
+# 1339
+
+class Solution:
+    def countLargestGroup(self, n: int) -> int:
+        # For those of you that did not understand(Like myself) The question is simply asking you for the highest frequency of the nums. (Wording on this question is dog...)
+        # For example 13 (Whos sum is 1 + 3 = 4) and a range from 1 to 13 will have the number 4 occuring twice. Essentially the number(s) with the highest frequency.
+
+        countArr = (list(range(1, n + 1)))
+        countDict = {}
+        for num in countArr:
+            # stringify the number to see the length
+            a = str(num)
+            if len(a) > 1:
+                res = 0
+                for num in a:
+                    res += int(num)
+
+                res = str(res)
+
+                if res in countDict:
+                    countDict[res] += 1
+                else:
+                    countDict[res] = 1
+            else:
+                if a in countDict:
+                    countDict[a] += 1
+                else:
+                    countDict[a] = 1
+
+        maxCount = max(countDict.values())
+        counter = 0
+        for key in countDict:
+            if countDict[key] == maxCount:
+                counter += 1
+
+        return counter
