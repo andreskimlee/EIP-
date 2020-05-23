@@ -458,3 +458,27 @@ class Solution:
                 counter += 1
 
         return counter
+
+# 784 Letter Case Permutation :
+# interesting case of using an i pointer to iterate over the string and decreasing the size of
+# your decision pool. For strings, this is pretty useful. For arrays do what you normally do
+
+
+class Solution(object):
+    def letterCasePermutation(self, S):
+        """
+        :type S: str
+        :rtype: List[str]
+        """
+        def backtrack(sub="", i=0):
+            if len(sub) == len(S):
+                res.append(sub)
+            else:
+                # You have two options. Send one recursive call with the opposite and then one with the regular while decreasing the decision pool which works by moving the i pointer over the string
+                if S[i].isalpha():
+                    backtrack(sub + S[i].swapcase(), i + 1)
+                backtrack(sub + S[i], i + 1)
+
+        res = []
+        backtrack()
+        return res
