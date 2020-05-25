@@ -4,6 +4,7 @@
 # but you could also solve this using two pointers with a predetermined length of an array that starts inwards and expands outwards or vise versa
 
 
+import heapq as h
 import threading
 from collections import deque
 from collections import OrderedDict
@@ -476,9 +477,43 @@ class Solution(object):
             else:
                 # You have two options. Send one recursive call with the opposite and then one with the regular while decreasing the decision pool which works by moving the i pointer over the string
                 if S[i].isalpha():
+                    # swap case inverts the current letter to opposite case of what it currently is
                     backtrack(sub + S[i].swapcase(), i + 1)
                 backtrack(sub + S[i], i + 1)
 
         res = []
         backtrack()
         return res
+
+
+# 682 baseball game
+# simple stack solution. You use the stack to keep track of what you have iterated over.
+class Solution(object):
+    def calPoints(self, ops):
+        stack = []
+        for op in ops:
+            if op == '+':
+                stack.append(stack[-1] + stack[-2])
+            elif op == 'C':
+                stack.pop()
+            elif op == 'D':
+                stack.append(2 * stack[-1])
+            else:
+                stack.append(int(op))
+
+        return sum(stack)
+
+
+# 1046 Last stone weight.
+
+
+class Solution:
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        for i in range(len(stones)):
+            stones[i] *= -1
+        heapq.heapify(stones)
+        while len(stones) > 1:
+            a, b = abs(h.heappop(stones)), abs(h.heappop(stones))
+            if a != b:
+                h.heappush(stones, b-a)
+        return abs(stones[0]) if stones else 0
